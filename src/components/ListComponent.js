@@ -28,10 +28,14 @@ export default class ListComponent extends React.Component {
 		})
 	}
 
+	onButtonPress() {
+		this.props.navigator.push()
+	}
+
 	render() {
 		let listItems = this.state.apiData.map(function(item, key) {
 			return (
-				<TouchableHighlight key={key} style={styles.row} onPress={() => thisHolder._onButtonClick(item.data)}>
+				<TouchableHighlight key={key} style={styles.row} onPress={this.onButtonPress.bind(this)}>
 					<Text>{ item.data.title }</Text>
 				</TouchableHighlight>
 			);
