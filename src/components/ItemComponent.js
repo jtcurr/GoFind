@@ -6,7 +6,7 @@ export default class ItemComponent extends React.Component {
 		return (
 			<View>
 				<Text>
-					Naviagte
+					Navigate
 				</Text>
 			</View>
 		)
