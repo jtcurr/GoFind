@@ -5,6 +5,10 @@ const axios = require('axios');
 
 export default class ListComponent extends React.Component {
 
+	static navigationOptions = {
+    title: 'ListComponent',
+  };
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,6 +17,7 @@ export default class ListComponent extends React.Component {
 	}
 
 	componentWillMount() {
+		const { navigate } = this.props.navigation;
 		const send = {img64: dress.data};
 		const api_address = "https://8n78hbwks0.execute-api.us-west-2.amazonaws.com/dev/";
 		axios.post(api_address, {
@@ -22,9 +27,7 @@ export default class ListComponent extends React.Component {
 			this.setState({
 				apiData: response
 			})
-			this.props.navigator.push({
-				id: 'ListComponent'
-			})
+			navigate('LoadingComponent');
 			console.log('response', response)
 		}).catch((error)=> {
 			console.log('error', error)
@@ -32,9 +35,7 @@ export default class ListComponent extends React.Component {
 	}
 
 	onButtonPress() {
-		this.props.navigator.push({
-			id: 'ItemComponent'
-		})
+		
 	}
 
 	render() {

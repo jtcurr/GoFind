@@ -13,6 +13,7 @@ export default class App extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <LoadingComponent />
     )
@@ -20,7 +21,8 @@ export default class App extends React.Component {
 }
 
 const GoFindApp = StackNavigator ({
-  Home: { screen: App}
+  Home: { screen: App },
+  List: { screen: ListComponent }
 })
 
 AppRegistry.registerComponent('GoFindApp', () => GoFindApp);
