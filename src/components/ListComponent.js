@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Text, View, TouchableHighlight, StyleSheet, Image } from 'react-native';
 import dress from '../../dress';
 import LoadingComponent from './LoadingComponent';
 const axios = require('axios');
@@ -14,8 +14,9 @@ export default class ListComponent extends React.Component {
 	}
 
 	componentWillMount() {
+		const context = this;
 		const api_address = "https://8n78hbwks0.execute-api.us-west-2.amazonaws.com/dev/";
-		var settings = {
+		const settings = {
 			"url": "https://8n78hbwks0.execute-api.us-west-2.amazonaws.com/dev/",
 			"method": "POST",
 			"headers": {
@@ -25,23 +26,29 @@ export default class ListComponent extends React.Component {
 		}
 
 		axios(settings).then(function (response) {
-			console.log(response);
+			//console.log('Success, ', response.data.data);
+			context.setState({
+				apiData: response.data.data
+			})
+		}).catch((error)=> {
+			//console.log('Error retrieving data from API', error);
 		});
-}
-
-	onButtonPress() {
-		
 	}
 
 	render() {
-		let listItems = this.state.apiData.map(function(item, key) {
+		const context = this;
+		console.log(context.state.apiData[0])
+		let listItems = context.state.apiData.map((item, key)=> {
 			return (
-				<TouchableHighlight key={key} style={styles.row} onPress={this.onButtonPress.bind(this)}>
-					<Text>{ item.data.title }</Text>
-				</TouchableHighlight>
+				<View key={key}>
+					<Text>{ item.price }</Text>
+					<Image style={{width: 100, height: 100}} source={{uri: item.chatbot_square_image }}/>
+					<View style={{ borderBottomColor: 'black', borderBottomWidth: 1, }} />
+				</View>
 			);
 		});
-		if(this.state.apiData.length > 0){
+
+		if(listItems.length > 0){
 			return(
 				<View>{ listItems }</View>
 			)
@@ -53,3 +60,12 @@ export default class ListComponent extends React.Component {
 		}
 	}
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
