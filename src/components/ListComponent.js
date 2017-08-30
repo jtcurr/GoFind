@@ -22,6 +22,9 @@ export default class ListComponent extends React.Component {
 			this.setState({
 				apiData: response
 			})
+			this.props.navigator.push({
+				id: 'ListComponent'
+			})
 			console.log('response', response)
 		}).catch((error)=> {
 			console.log('error', error)
@@ -29,7 +32,9 @@ export default class ListComponent extends React.Component {
 	}
 
 	onButtonPress() {
-		this.props.navigator.push()
+		this.props.navigator.push({
+			id: 'ItemComponent'
+		})
 	}
 
 	render() {
@@ -40,15 +45,8 @@ export default class ListComponent extends React.Component {
 				</TouchableHighlight>
 			);
 		});
-		if(this.state.apiData.length > 0) {
-			return(
-				<View>{ listItems }</View>
-			)
-		}
-		else {
-			return (
-				<Text>Loading data...</Text>
-			)
-		}
+		return(
+			<View>{ listItems }</View>
+		)
 	}
 }
