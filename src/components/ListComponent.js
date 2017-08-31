@@ -53,7 +53,7 @@ export default class ListComponent extends React.Component {
 				<View style={{ marginTop: 20 }}>{ listItems }</View>
 			)
 		}
-		//Show loading component if data has not arrived
+		//Show loading component if data has not arrived yet
 		else {
 			return(
 				<LoadingComponent />
