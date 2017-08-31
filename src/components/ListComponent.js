@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View, TouchableHighlight, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import dress from '../../dress';
 import LoadingComponent from './LoadingComponent';
-const axios = require('axios');
+import axios from 'axios';
 
 export default class ListComponent extends React.Component {
 
@@ -26,18 +26,17 @@ export default class ListComponent extends React.Component {
 		}
 
 		axios(settings).then(function (response) {
-			//console.log('Success, ', response.data.data);
+			console.log('Success, ', response.data.data);
 			context.setState({
 				apiData: response.data.data
 			})
 		}).catch((error)=> {
-			//console.log('Error retrieving data from API', error);
+			console.log('Error retrieving data from API', error);
 		});
 	}
 
 	render() {
 		const context = this;
-		console.log(context.state.apiData[0])
 		let listItems = context.state.apiData.map((item, key)=> {
 			return (
 				<View key={key}>
@@ -50,7 +49,7 @@ export default class ListComponent extends React.Component {
 
 		if(listItems.length > 0){
 			return(
-				<View>{ listItems }</View>
+				<View style={{ marginTop: 20 }}>{ listItems }</View>
 			)
 		}
 		else {
@@ -62,10 +61,10 @@ export default class ListComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });
