@@ -38,10 +38,13 @@ export default class ListComponent extends React.Component {
 
 	render() {
 		const context = this;
+		console.log(context.state.apiData[0])
 		let listItems = context.state.apiData.map((item, key)=> {
 			return (
 				<View key={key}>
-					<Text>{ item.price }</Text>
+					<Text style={{fontWeight:'bold'}}>{ item.price }</Text>
+					<Text>{ item.itemName }</Text>
+					<Text>{ item.seller }</Text>
 					<Image style={{width: 100, height: 100}} source={{uri: item.chatbot_square_image }}/>
 					<View style={{ borderBottomColor: 'black', borderBottomWidth: 1, }} />
 				</View>
