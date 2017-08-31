@@ -13,6 +13,7 @@ export default class ListComponent extends React.Component {
 		}
 	}
 
+	//Retreives data from API before component mounts
 	componentWillMount() {
 		const context = this;
 		const api_address = "https://8n78hbwks0.execute-api.us-west-2.amazonaws.com/dev/";
@@ -46,12 +47,13 @@ export default class ListComponent extends React.Component {
 				</View>
 			);
 		});
-
+		//Checks to see if data has come back from API
 		if(listItems.length > 0){
 			return(
 				<View style={{ marginTop: 20 }}>{ listItems }</View>
 			)
 		}
+		//Show loading component if data has not arrived
 		else {
 			return(
 				<LoadingComponent />

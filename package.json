@@ -2,6 +2,10 @@
   "name": "whilCodingChallenge",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.4.0",
+    "npm": "5.3.0",
+  },
   "devDependencies": {
     "jest-expo": "~18.0.0",
     "path": "^0.12.7",
@@ -10,7 +14,7 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "npm run ios",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",

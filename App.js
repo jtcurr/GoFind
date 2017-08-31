@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import ListComponent from './src/components/ListComponent';
-import LoadingComponent from './src/components/LoadingComponent';
 
 export default class App extends React.Component {
 
